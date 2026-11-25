@@ -23,5 +23,7 @@ MORAL_MAX = 15
 PRODUTIVIDADE_MAX = 10
 PENALIDADE_ERRO = 5
 TEMPO_LIMITE_CASO = 20  # segundos por caso antes de perder Produtividade
+PONTOS_ACERTO = 10
 
 CAMINHO_RECORDE = "data/recorde.txt"
+CAMINHO_CASOS = "data/casos.txt"

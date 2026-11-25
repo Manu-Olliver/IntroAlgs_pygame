@@ -1,31 +1,73 @@
-from src.funcoes import calcular_pontos, jogador_perdeu, limitar_valor
+from src.config import (
+    CREDIBILIDADE_MAX,
+    MORAL_MAX,
+    PRODUTIVIDADE_MAX,
+    PENALIDADE_ERRO,
+    PONTOS_ACERTO,
+)
+from src.funcoes import (
+    iniciar_status,
+    avaliar_decisao,
+    aplicar_penalidade_tempo,
+    verificar_derrota,
+    quebrar_texto_em_linhas,
+)
+from src.dados import obter_rodadas
 
 
-def test_calcular_pontos():
-    """Deve somar corretamente os pontos atuais com os pontos ganhos."""
-    assert calcular_pontos(10, 5) == 15
+def test_iniciar_status():
+    status = iniciar_status()
+    assert status["credibilidade"] == CREDIBILIDADE_MAX
+    assert status["moral"] == MORAL_MAX
+    assert status["produtividade"] == PRODUTIVIDADE_MAX
 
 
-def test_jogador_perdeu_com_zero_vidas():
-    """Deve indicar derrota quando o total de vidas chega a zero."""
-    assert jogador_perdeu(0) is True
+def test_avaliar_decisao_acerto():
+    status = iniciar_status()
+    caso = {
+        "acao_correta": "APROVAR",
+        "indicador_afetado": "credibilidade",
+        "explicacao": "Informação oficial.",
+    }
+    acertou, feedback, novo_status, novos_pontos = avaliar_decisao(caso, "APROVAR", status, 0)
+
+    assert acertou is True
+    assert novos_pontos == PONTOS_ACERTO
+    assert novo_status["credibilidade"] == CREDIBILIDADE_MAX
+    assert "CORRETO" in feedback
 
 
-def test_jogador_nao_perdeu_com_vidas():
-    """Nao deve indicar derrota quando o jogador ainda tem vidas."""
-    assert jogador_perdeu(3) is False
+def test_avaliar_decisao_erro_desconta_indicador():
+    status = iniciar_status()
+    caso = {
+        "acao_correta": "REJEITAR",
+        "indicador_afetado": "moral",
+        "explicacao": "Viola a privacidade.",
+    }
+    acertou, feedback, novo_status, novos_pontos = avaliar_decisao(caso, "APROVAR", status, 10)
+
+    assert acertou is False
+    assert novos_pontos == 10
+    assert novo_status["moral"] == MORAL_MAX - PENALIDADE_ERRO
+    assert "ERRO" in feedback
 
 
-def test_limitar_valor_abaixo_do_minimo():
-    """Deve retornar o limite minimo quando o valor informado for menor."""
-    assert limitar_valor(-5, 0, 100) == 0
+def test_aplicar_penalidade_tempo():
+    status = iniciar_status()
+    novo_status = aplicar_penalidade_tempo(status)
+    assert novo_status["produtividade"] == PRODUTIVIDADE_MAX - PENALIDADE_ERRO
 
 
-def test_limitar_valor_acima_do_maximo():
-    """Deve retornar o limite maximo quando o valor informado for maior."""
-    assert limitar_valor(150, 0, 100) == 100
+def test_verificar_derrota():
+    status_ok = iniciar_status()
+    assert verificar_derrota(status_ok) is False
+
+    status_zerado = {"credibilidade": 0, "moral": 10, "produtividade": 10}
+    assert verificar_derrota(status_zerado) is True
 
 
-def test_limitar_valor_dentro_do_intervalo():
-    """Deve manter o valor original quando ele ja estiver no intervalo."""
-    assert limitar_valor(50, 0, 100) == 50
+def test_obter_rodadas_do_arquivo():
+    rodadas = obter_rodadas("data/casos.txt")
+    assert len(rodadas) == 3
+    assert len(rodadas[0]) == 3
+    assert "texto" in rodadas[0][0]

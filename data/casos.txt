@@ -1,0 +1,9 @@
+1|1|Privacidade|Foto publicada em rede social aberta exibindo o cracha funcional e o CPF de um funcionario.|REJEITAR|moral|Exposicao de dados pessoais sensiveis (CPF) viola a privacidade e a LGPD.
+1|2|Fato Verificado|Boletim meteorologico oficial confirma previsao de chuva moderada para o fim de semana na capital.|APROVAR|credibilidade|Informacao baseada em fonte oficial, sem riscos eticos ou de desinformacao.
+1|3|Informacao Falsa|Estudo secreto comprova que beber agua gelada cura instantaneamente qualquer infeccao viral.|REJEITAR|credibilidade|Afirmacao medica falsa e sem respaldo cientifico compromete a credibilidade do veiculo.
+2|1|Preconceito / Vies|Relatorio automatico recomenda descartar candidatos de determinados bairros sem avaliar o curriculo.|REJEITAR|moral|Automatizar discriminacao geografica ou socioeconomica e antiético e enviesado.
+2|2|Servico Publico|Prefeitura divulga calendario atualizado de vacinacao contra gripe nos postos de saude municipais.|APROVAR|credibilidade|Conteudo informativo de utilidade publica com dados claros e verificaveis.
+2|3|Desinformacao|Mensagem viral afirma que urnas eletronicas foram substituidas por sorteio manual nesta eleicao.|REJEITAR|credibilidade|Boato sem fundamento que espalha desinformacao sobre o processo eleitoral.
+3|1|Privacidade|Planilha interna com enderecos residenciais e telefones privados de clientes anexada em nota publica.|REJEITAR|moral|Vazamento de dados privados de clientes causa dano direto as pessoas envolvidas.
+3|2|Ciencia e Tecnologia|Pesquisadores publicam artigo revisado por pares detalhando melhorias na eficiencia de paineis solares.|APROVAR|credibilidade|Divulgacao cientifica precisa, fundamentada em estudo revisado por pares.
+3|3|Preconceito / Vies|Texto gerado por IA associa automaticamente uma profissao especifica a apenas um genero.|REJEITAR|moral|Reproduzir estereotipos de genero reforca vieses algoritmicos na redacao.
