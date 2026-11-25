@@ -337,9 +337,9 @@ def executar_jogo():
             msg3 = fonte_subtitulo.render(
                 "Pressione [ R ] para jogar novamente ou [ M ] para o Menu.", True, AZUL_ESCURO
             )
-            tela.blit(msg1, (140, 230))
-            tela.blit(msg2, (70, 285))
-            tela.blit(msg3, (145, 345))
+            tela.blit(msg1, msg1.get_rect(center=(LARGURA_TELA // 2, 240)))
+            tela.blit(msg2, msg2.get_rect(center=(LARGURA_TELA // 2, 295)))
+            tela.blit(msg3, msg3.get_rect(center=(LARGURA_TELA // 2, 355)))
 
         elif estado_jogo == "DERROTA":
             msg1 = fonte_titulo.render("DERROTA! REDAÇÃO ENCERRADA!", True, VERMELHO)
@@ -351,9 +351,9 @@ def executar_jogo():
             msg3 = fonte_subtitulo.render(
                 "Pressione [ R ] para tentar novamente ou [ M ] para o Menu.", True, AZUL_ESCURO
             )
-            tela.blit(msg1, (195, 230))
-            tela.blit(msg2, (65, 285))
-            tela.blit(msg3, (145, 345))
+            tela.blit(msg1, msg1.get_rect(center=(LARGURA_TELA // 2, 240)))
+            tela.blit(msg2, msg2.get_rect(center=(LARGURA_TELA // 2, 295)))
+            tela.blit(msg3, msg3.get_rect(center=(LARGURA_TELA // 2, 355)))
 
         pygame.display.flip()
 
